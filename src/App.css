@@ -1,0 +1,12 @@
+.blog-detail {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.card {
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
