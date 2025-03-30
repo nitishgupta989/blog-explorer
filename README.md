@@ -1,70 +1,110 @@
-# Getting Started with Create React App
+# BlogExplorer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, responsive blog system built with React and Bootstrap that integrates with JSONPlaceholder API for demo purposes.
 
-## Available Scripts
+![Home Page](assets/home-page.png)
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+### Core Features
+- **Blog List:** Display a list of all blog posts with titles, authors, and content previews
+- **Blog Details:** View detailed information about a selected blog post
+- **Comments:** Read and add comments to blog posts
+- **Like System:** Like blog posts with persistent like counts
+- **Search & Filter:** Find specific content using search and author filtering
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technologies Used
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React
+- Bootstrap 5
+- JSONPlaceholder API
+- React Hooks for state management
+- Bootstrap Icons
 
-### `npm test`
+## Installation & Setup
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/blog-explorer.git
+cd blog-explorer
+```
 
-### `npm run build`
+2. Install dependencies:
+```bash
+npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Start the development server:
+```bash
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Open your browser and navigate to `http://localhost:3000`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Project Structure
 
-### `npm run eject`
+```
+blog-explorer/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── BlogCard.js      # Individual blog post card component
+│   │   ├── BlogDetail.js    # Blog post detail view component
+│   │   ├── BlogList.js      # List of blog posts component
+│   │   ├── CommentForm.js   # Form for adding new comments
+│   │   ├── Navbar.js        # Navigation bar component
+│   │   └── SearchBar.js     # Search and filter component
+│   ├── App.js               # Main application component
+│   ├── App.css              # Application styles
+│   └── index.js             # Entry point
+└── package.json
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## How it Works
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+BlogExplorer fetches blog data from the JSONPlaceholder API and presents it in a user-friendly interface. Users can:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Browse through all blog posts on the home page
+2. Click on a post to view its full content and comments
+3. Like posts through the heart button
+4. Add comments using the comment form
+5. Search for posts by keyword
+6. Filter posts by author
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The application uses React state to manage:
+- Currently selected blog post
+- Like counts
+- Comments list
+- Search and filter criteria
 
-## Learn More
+## API Integration
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The application integrates with the following JSONPlaceholder API endpoints:
+- `/posts` - To fetch all blog posts
+- `/users` - To get author information
+- `/posts/{id}/comments` - To get comments for a specific post
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Future Enhancements
 
-### Code Splitting
+- User authentication system
+- Categories and tags for blog posts
+- Pagination for blog list
+- Rich text editor for comments
+- Dark mode support
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Feature Screenshots
 
-### Analyzing the Bundle Size
+### Search & filter blogs
+![Search](assets/search.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Read blogs, Like them, Add comments
+![Blog Details](assets/blog-details.png)
 
-### Making a Progressive Web App
+### View comments from other people
+![Comments](assets/comments.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Acknowledgements
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [JSONPlaceholder](https://jsonplaceholder.typicode.com/) for providing the fake API
+- [Bootstrap](https://getbootstrap.com/) for the responsive design components
+- [Bootstrap Icons](https://icons.getbootstrap.com/) for the icon set
