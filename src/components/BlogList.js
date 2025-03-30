@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BlogCard from './BlogCard';
 
-function BlogList({ onBlogSelect }) {
+function BlogList({ onBlogSelect, likedBlogs, onLike }) {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -67,7 +67,12 @@ function BlogList({ onBlogSelect }) {
       <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {blogs.map(blog => (
           <div className="col" key={blog.id}>
-            <BlogCard blog={blog} onBlogSelect={onBlogSelect} />
+            <BlogCard 
+              blog={blog} 
+              onBlogSelect={onBlogSelect} 
+              likes={likedBlogs[blog.id] || 0}
+              onLike={onLike}
+            />
           </div>
         ))}
       </div>
