@@ -3,11 +3,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import BlogList from './components/BlogList';
 import BlogDetail from './components/BlogDetail';
 import Navbar from './components/Navbar';
+import SearchBar from './components/SearchBar';
 import './App.css';
 
 function App() {
   const [selectedBlog, setSelectedBlog] = useState(null);
   const [likedBlogs, setLikedBlogs] = useState({});
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterAuthor, setFilterAuthor] = useState('');
 
   const handleBlogSelect = (blog) => {
     setSelectedBlog(blog);
@@ -24,6 +27,14 @@ function App() {
     }));
   };
 
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+  };
+
+  const handleFilterByAuthor = (author) => {
+    setFilterAuthor(author);
+  };
+
   return (
     <div className="App">
       <Navbar />
@@ -36,11 +47,20 @@ function App() {
             likes={likedBlogs[selectedBlog.id] || 0}
           />
         ) : (
-          <BlogList 
-            onBlogSelect={handleBlogSelect} 
-            likedBlogs={likedBlogs}
-            onLike={handleLikeBlog}
-          />
+          <>
+            <SearchBar 
+              onSearch={handleSearch} 
+              onFilterAuthor={handleFilterByAuthor}
+              currentAuthorFilter={filterAuthor}
+            />
+            <BlogList 
+              onBlogSelect={handleBlogSelect} 
+              likedBlogs={likedBlogs}
+              onLike={handleLikeBlog}
+              searchTerm={searchTerm}
+              filterAuthor={filterAuthor}
+            />
+          </>
         )}
       </div>
     </div>

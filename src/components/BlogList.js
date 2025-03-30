@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BlogCard from './BlogCard';
 
-function BlogList({ onBlogSelect, likedBlogs, onLike }) {
+function BlogList({ onBlogSelect, likedBlogs, onLike, searchTerm, filterAuthor }) {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -43,6 +43,17 @@ function BlogList({ onBlogSelect, likedBlogs, onLike }) {
     fetchBlogs();
   }, []);
 
+  // Filter blogs based on search term and author filter
+  const filteredBlogs = blogs.filter(blog => {
+    const matchesSearch = searchTerm === '' || 
+      blog.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      blog.body.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    const matchesAuthor = filterAuthor === '' || blog.author === filterAuthor;
+    
+    return matchesSearch && matchesAuthor;
+  });
+
   if (loading) {
     return (
       <div className="d-flex justify-content-center mt-5">
@@ -63,19 +74,31 @@ function BlogList({ onBlogSelect, likedBlogs, onLike }) {
 
   return (
     <div>
-      <h1 className="mb-4">Latest Blog Posts</h1>
-      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        {blogs.map(blog => (
-          <div className="col" key={blog.id}>
-            <BlogCard 
-              blog={blog} 
-              onBlogSelect={onBlogSelect} 
-              likes={likedBlogs[blog.id] || 0}
-              onLike={onLike}
-            />
-          </div>
-        ))}
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h1>Latest Blog Posts</h1>
+        <div className="badge bg-primary">
+          {filteredBlogs.length} {filteredBlogs.length === 1 ? 'post' : 'posts'} found
+        </div>
       </div>
+      
+      {filteredBlogs.length === 0 ? (
+        <div className="alert alert-info">
+          No blog posts match your search criteria. Try adjusting your filters.
+        </div>
+      ) : (
+        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          {filteredBlogs.map(blog => (
+            <div className="col" key={blog.id}>
+              <BlogCard 
+                blog={blog} 
+                onBlogSelect={onBlogSelect} 
+                likes={likedBlogs[blog.id] || 0}
+                onLike={onLike}
+              />
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
